@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Dist23BridgeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BridgeLink">
+          <Key>
+            <PropertyRef Name="link_id" />
+          </Key>
+          <Property Name="link_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vol_id" Type="int" />
+          <Property Name="bridge_id" Type="int" />
+          <Property Name="DateAssign" Type="date" />
+          <Property Name="FirstLetterSent" Type="date" />
+          <Property Name="FirstResponse" Type="date" />
+          <Property Name="FirstVisit" Type="date" />
+          <Property Name="FirstMeeting" Type="date" />
+        </EntityType>
+        <EntityType Name="Bridger">
+          <Key>
+            <PropertyRef Name="bridge_id" />
+          </Key>
+          <Property Name="bridge_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="InmateID" Type="varchar" MaxLength="50" />
+          <Property Name="jail_id" Type="int" />
+          <Property Name="ReleaseDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Jail">
+          <Key>
+            <PropertyRef Name="jail_id" />
+          </Key>
+          <Property Name="jail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JailName" Type="varchar" MaxLength="255" />
+          <Property Name="JailAddress" Type="varchar" MaxLength="512" />
+          <Property Name="JailContact" Type="varchar" MaxLength="255" />
+          <Property Name="JailContPhone" Type="varchar" MaxLength="50" />
+          <Property Name="JailContEmail" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="vol_id" />
+          </Key>
+          <Property Name="vol_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="GUID_key" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK_BridgeLink_Bridger">
+          <End Role="Bridger" Type="Self.Bridger" Multiplicity="0..1" />
+          <End Role="BridgeLink" Type="Self.BridgeLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bridger">
+              <PropertyRef Name="bridge_id" />
+            </Principal>
+            <Dependent Role="BridgeLink">
+              <PropertyRef Name="vol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BridgeLink_Volunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+          <End Role="BridgeLink" Type="Self.BridgeLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="vol_id" />
+            </Principal>
+            <Dependent Role="BridgeLink">
+              <PropertyRef Name="vol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bridger_Jail">
+          <End Role="Jail" Type="Self.Jail" Multiplicity="0..1" />
+          <End Role="Bridger" Type="Self.Bridger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jail">
+              <PropertyRef Name="jail_id" />
+            </Principal>
+            <Dependent Role="Bridger">
+              <PropertyRef Name="jail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Dist23BridgeModelStoreContainer">
+          <EntitySet Name="BridgeLink" EntityType="Self.BridgeLink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bridger" EntityType="Self.Bridger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jail" EntityType="Self.Jail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Volunteer" EntityType="Self.Volunteer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BridgeLink_Bridger" Association="Self.FK_BridgeLink_Bridger">
+            <End Role="Bridger" EntitySet="Bridger" />
+            <End Role="BridgeLink" EntitySet="BridgeLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BridgeLink_Volunteer" Association="Self.FK_BridgeLink_Volunteer">
+            <End Role="Volunteer" EntitySet="Volunteer" />
+            <End Role="BridgeLink" EntitySet="BridgeLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bridger_Jail" Association="Self.FK_Bridger_Jail">
+            <End Role="Jail" EntitySet="Jail" />
+            <End Role="Bridger" EntitySet="Bridger" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Dist23BridgeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BridgeLink">
+          <Key>
+            <PropertyRef Name="link_id" />
+          </Key>
+          <Property Name="link_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vol_id" Type="Int32" />
+          <Property Name="bridge_id" Type="Int32" />
+          <Property Name="DateAssign" Type="DateTime" Precision="0" />
+          <Property Name="FirstLetterSent" Type="DateTime" Precision="0" />
+          <Property Name="FirstResponse" Type="DateTime" Precision="0" />
+          <Property Name="FirstVisit" Type="DateTime" Precision="0" />
+          <Property Name="FirstMeeting" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Bridger" Relationship="Self.FK_BridgeLink_Bridger" FromRole="BridgeLink" ToRole="Bridger" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_BridgeLink_Volunteer" FromRole="BridgeLink" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="Bridger">
+          <Key>
+            <PropertyRef Name="bridge_id" />
+          </Key>
+          <Property Name="bridge_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InmateID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jail_id" Type="Int32" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="BridgeLinks" Relationship="Self.FK_BridgeLink_Bridger" FromRole="Bridger" ToRole="BridgeLink" />
+          <NavigationProperty Name="Jail" Relationship="Self.FK_Bridger_Jail" FromRole="Bridger" ToRole="Jail" />
+        </EntityType>
+        <EntityType Name="Jail">
+          <Key>
+            <PropertyRef Name="jail_id" />
+          </Key>
+          <Property Name="jail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JailName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="JailAddress" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="JailContact" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="JailContPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JailContEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bridgers" Relationship="Self.FK_Bridger_Jail" FromRole="Jail" ToRole="Bridger" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="vol_id" />
+          </Key>
+          <Property Name="vol_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GUID_key" Type="Guid" />
+          <NavigationProperty Name="BridgeLinks" Relationship="Self.FK_BridgeLink_Volunteer" FromRole="Volunteer" ToRole="BridgeLink" />
+        </EntityType>
+        <Association Name="FK_BridgeLink_Bridger">
+          <End Role="Bridger" Type="Self.Bridger" Multiplicity="0..1" />
+          <End Role="BridgeLink" Type="Self.BridgeLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bridger">
+              <PropertyRef Name="bridge_id" />
+            </Principal>
+            <Dependent Role="BridgeLink">
+              <PropertyRef Name="vol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BridgeLink_Volunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+          <End Role="BridgeLink" Type="Self.BridgeLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="vol_id" />
+            </Principal>
+            <Dependent Role="BridgeLink">
+              <PropertyRef Name="vol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bridger_Jail">
+          <End Role="Jail" Type="Self.Jail" Multiplicity="0..1" />
+          <End Role="Bridger" Type="Self.Bridger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jail">
+              <PropertyRef Name="jail_id" />
+            </Principal>
+            <Dependent Role="Bridger">
+              <PropertyRef Name="jail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Dist23BridgeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BridgeLinks" EntityType="Self.BridgeLink" />
+          <EntitySet Name="Bridgers" EntityType="Self.Bridger" />
+          <EntitySet Name="Jails" EntityType="Self.Jail" />
+          <EntitySet Name="Volunteers" EntityType="Self.Volunteer" />
+          <AssociationSet Name="FK_BridgeLink_Bridger" Association="Self.FK_BridgeLink_Bridger">
+            <End Role="Bridger" EntitySet="Bridgers" />
+            <End Role="BridgeLink" EntitySet="BridgeLinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BridgeLink_Volunteer" Association="Self.FK_BridgeLink_Volunteer">
+            <End Role="Volunteer" EntitySet="Volunteers" />
+            <End Role="BridgeLink" EntitySet="BridgeLinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bridger_Jail" Association="Self.FK_Bridger_Jail">
+            <End Role="Jail" EntitySet="Jails" />
+            <End Role="Bridger" EntitySet="Bridgers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Dist23BridgeModelStoreContainer" CdmEntityContainer="Dist23BridgeEntities">
+          <EntitySetMapping Name="BridgeLinks">
+            <EntityTypeMapping TypeName="Dist23BridgeModel.BridgeLink">
+              <MappingFragment StoreEntitySet="BridgeLink">
+                <ScalarProperty Name="link_id" ColumnName="link_id" />
+                <ScalarProperty Name="vol_id" ColumnName="vol_id" />
+                <ScalarProperty Name="bridge_id" ColumnName="bridge_id" />
+                <ScalarProperty Name="DateAssign" ColumnName="DateAssign" />
+                <ScalarProperty Name="FirstLetterSent" ColumnName="FirstLetterSent" />
+                <ScalarProperty Name="FirstResponse" ColumnName="FirstResponse" />
+                <ScalarProperty Name="FirstVisit" ColumnName="FirstVisit" />
+                <ScalarProperty Name="FirstMeeting" ColumnName="FirstMeeting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bridgers">
+            <EntityTypeMapping TypeName="Dist23BridgeModel.Bridger">
+              <MappingFragment StoreEntitySet="Bridger">
+                <ScalarProperty Name="bridge_id" ColumnName="bridge_id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="InmateID" ColumnName="InmateID" />
+                <ScalarProperty Name="jail_id" ColumnName="jail_id" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jails">
+            <EntityTypeMapping TypeName="Dist23BridgeModel.Jail">
+              <MappingFragment StoreEntitySet="Jail">
+                <ScalarProperty Name="jail_id" ColumnName="jail_id" />
+                <ScalarProperty Name="JailName" ColumnName="JailName" />
+                <ScalarProperty Name="JailAddress" ColumnName="JailAddress" />
+                <ScalarProperty Name="JailContact" ColumnName="JailContact" />
+                <ScalarProperty Name="JailContPhone" ColumnName="JailContPhone" />
+                <ScalarProperty Name="JailContEmail" ColumnName="JailContEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Volunteers">
+            <EntityTypeMapping TypeName="Dist23BridgeModel.Volunteer">
+              <MappingFragment StoreEntitySet="Volunteer">
+                <ScalarProperty Name="vol_id" ColumnName="vol_id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="GUID_key" ColumnName="GUID_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
