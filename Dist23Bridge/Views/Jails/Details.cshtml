@@ -1,0 +1,66 @@
+﻿@model Dist23Bridge.Jail
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Jail</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.JailName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.JailName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.JailAddress)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.JailAddress)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.JailContact)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.JailContact)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.JailContPhone)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.JailContPhone)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.JailContEmail)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.JailContEmail)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.jail_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

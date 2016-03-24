@@ -1,0 +1,72 @@
+﻿@model Dist23Bridge.Jail
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Jail</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.JailName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.JailName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.JailAddress)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.JailAddress)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.JailContact)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.JailContact)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.JailContPhone)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.JailContPhone)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.JailContEmail)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.JailContEmail)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>
