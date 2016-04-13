@@ -151,7 +151,9 @@
     <Compile Include="Bridger.cs">
       <DependentUpon>BridgeData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BridgersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VolunteersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,6 +215,16 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Volunteers\Create.cshtml" />
+    <Content Include="Views\Volunteers\Delete.cshtml" />
+    <Content Include="Views\Volunteers\Details.cshtml" />
+    <Content Include="Views\Volunteers\Edit.cshtml" />
+    <Content Include="Views\Volunteers\Index.cshtml" />
+    <Content Include="Views\Bridgers\Create.cshtml" />
+    <Content Include="Views\Bridgers\Delete.cshtml" />
+    <Content Include="Views\Bridgers\Details.cshtml" />
+    <Content Include="Views\Bridgers\Edit.cshtml" />
+    <Content Include="Views\Bridgers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
