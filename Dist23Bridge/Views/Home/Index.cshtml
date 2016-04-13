@@ -1,30 +1,108 @@
-﻿@{
+﻿@model IEnumerable<Dist23Bridge.Jail>
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h2>District 23 (Eastern Shore of Baldwin County)</h2>
-    <p class="lead">The Corrections Bridge Program - Bringing Inmates Into the Light</p>
+    <div class="col=md-6">
+        <img src="~/images/General_W.K._Wilson_Bridge (1).jpg" />
+    </div>
+    <div class="col=md-4">
+        <h2>The District 23 Corrections Bridge Program</h2>
+        <h3>Bringing Inmates Into the Light of Recovery</h3>
+    </div>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+    <div class="col-md-12">
+        <h2>About the Bridge Program</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            The District 23 Bridge Program pairs Inmates in our local jails with volunteers
+            from our local Recovery Community which guide them in our Twelve Step Recovery Program
+            while they are incarcerated and assist them in getting to meetings and acclimating them into the Recovery Community
+            once they are released.
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+        <h2>We are currently setup in the following jails</h2>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.Label("Jail Name")
+                </th>
+                <th>
+                    @Html.Label("Jail Address")
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JailName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JailAddress)
+                    </td>
+                </tr>
+            }
+
+        </table>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+    <div class="col-md-12">
+        <h2>Statistics</h2>
+        <table class="table">
+                <tr>
+                    <td>
+                        @Html.Label("Inmates Enrolled")
+                    </td>
+                    <td>
+                        @Html.Label("7")
+                    </td>
+                </tr>
+            <tr>
+                <td>
+                    @Html.Label("Volunteers Assigned")
+                </td>
+                <td>
+                    @Html.Label("7")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Label("Contacts made")
+                </td>
+                <td>
+                    @Html.Label("7")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Label("Bridge Volunteer Visits")
+                </td>
+                <td>
+                    @Html.Label("0")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Label("Released Participants")
+                </td>
+                <td>
+                    @Html.Label("0")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Label("Released currently attending meetings")
+                </td>
+                <td>
+                    @Html.Label("0")
+                </td>
+            </tr>
+        </table>
     </div>
+
 </div>
