@@ -27,6 +27,8 @@ namespace Dist23Bridge
         public string Email { get; set; }
         public string City { get; set; }
         public Nullable<System.Guid> GUID_key { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BridgeLink> BridgeLinks { get; set; }

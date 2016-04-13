@@ -153,6 +153,7 @@
     </Compile>
     <Compile Include="Controllers\BridgersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JailsController.cs" />
     <Compile Include="Controllers\VolunteersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -225,6 +226,11 @@
     <Content Include="Views\Bridgers\Details.cshtml" />
     <Content Include="Views\Bridgers\Edit.cshtml" />
     <Content Include="Views\Bridgers\Index.cshtml" />
+    <Content Include="Views\Jails\Create.cshtml" />
+    <Content Include="Views\Jails\Delete.cshtml" />
+    <Content Include="Views\Jails\Details.cshtml" />
+    <Content Include="Views\Jails\Edit.cshtml" />
+    <Content Include="Views\Jails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

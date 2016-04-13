@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Dist23BridgeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Dist23BridgeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BridgeLink">
           <Key>
             <PropertyRef Name="link_id" />
@@ -53,6 +53,8 @@
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="GUID_key" Type="uniqueidentifier" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_BridgeLink_Bridger">
           <End Role="Bridger" Type="Self.Bridger" Multiplicity="0..1" />
@@ -108,8 +110,7 @@
             <End Role="Bridger" EntitySet="Bridger" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Dist23BridgeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -167,6 +168,8 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="GUID_key" Type="Guid" />
           <NavigationProperty Name="BridgeLinks" Relationship="Self.FK_BridgeLink_Volunteer" FromRole="Volunteer" ToRole="BridgeLink" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_BridgeLink_Bridger">
           <End Role="Bridger" Type="Self.Bridger" Multiplicity="0..1" />
@@ -271,6 +274,8 @@
           <EntitySetMapping Name="Volunteers">
             <EntityTypeMapping TypeName="Dist23BridgeModel.Volunteer">
               <MappingFragment StoreEntitySet="Volunteer">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="vol_id" ColumnName="vol_id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
