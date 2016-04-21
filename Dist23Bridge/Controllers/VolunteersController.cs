@@ -46,7 +46,7 @@ namespace Dist23Bridge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "vol_id,FirstName,LastName,Phone,Email,City,GUID_key")] Volunteer volunteer)
+        public ActionResult Create(Volunteer volunteer)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Dist23Bridge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "vol_id,FirstName,LastName,Phone,Email,City,GUID_key")] Volunteer volunteer)
+        public ActionResult Edit(Volunteer volunteer)
         {
             if (ModelState.IsValid)
             {
