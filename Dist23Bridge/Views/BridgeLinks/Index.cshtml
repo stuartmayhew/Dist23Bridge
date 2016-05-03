@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Dist23Bridge.BridgeLink>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bridge_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAssign)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstLetterSent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstResponse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstVisit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstMeeting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bridger.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Volunteer.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bridge_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAssign)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstLetterSent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstResponse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstVisit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstMeeting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bridger.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Volunteer.FirstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.link_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.link_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.link_id })
+        </td>
+    </tr>
+}
+
+</table>

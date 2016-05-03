@@ -1,0 +1,88 @@
+﻿@model Dist23Bridge.BridgeLink
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BridgeLink</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.bridge_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bridge_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAssign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAssign)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstLetterSent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstLetterSent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstResponse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstResponse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstVisit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstVisit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstMeeting)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstMeeting)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bridger.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bridger.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Volunteer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Volunteer.FirstName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

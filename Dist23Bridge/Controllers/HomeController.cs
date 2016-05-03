@@ -13,7 +13,7 @@ namespace Dist23Bridge.Controllers
         {
             using (Dist23BridgeEntities db = new Dist23BridgeEntities())
             {
-                return View(db.Jails.ToList());
+                return View(db.Jails.Where(x => x.jail_id != 2).ToList());
             }
         }
     }

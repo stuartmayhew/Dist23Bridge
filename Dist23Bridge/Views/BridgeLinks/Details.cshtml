@@ -1,0 +1,82 @@
+﻿@model Dist23Bridge.BridgeLink
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BridgeLink</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.bridge_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bridge_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAssign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAssign)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstLetterSent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstLetterSent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstResponse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstResponse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstVisit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstVisit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstMeeting)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstMeeting)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bridger.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bridger.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Volunteer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Volunteer.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.link_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
