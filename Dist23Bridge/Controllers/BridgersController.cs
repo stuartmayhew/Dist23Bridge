@@ -6,19 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Dist23Bridge;
+using Dist23Bridge.Models;
 
 namespace Dist23Bridge.Controllers
 {
     public class BridgersController : Controller
     {
-        private Dist23BridgeEntities db = new Dist23BridgeEntities();
+        private BridgeData db = new BridgeData();
 
         // GET: Bridgers
         public ActionResult Index()
         {
-            var bridgers = db.Bridgers.Include(b => b.Jail);
-            return View(bridgers.ToList());
+            return View(db.Bridgers.ToList());
         }
 
         // GET: Bridgers/Details/5
@@ -28,7 +27,7 @@ namespace Dist23Bridge.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bridger bridger = db.Bridgers.Find(id);
+            Bridgers bridger = db.Bridgers.Find(id);
             if (bridger == null)
             {
                 return HttpNotFound();
@@ -48,7 +47,7 @@ namespace Dist23Bridge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "bridge_id,FirstName,LastName,City,Phone,InmateID,jail_id,ReleaseDate")] Bridger bridger)
+        public ActionResult Create(Bridgers bridger)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +67,7 @@ namespace Dist23Bridge.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bridger bridger = db.Bridgers.Find(id);
+            Bridgers bridger = db.Bridgers.Find(id);
             if (bridger == null)
             {
                 return HttpNotFound();
@@ -82,7 +81,7 @@ namespace Dist23Bridge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "bridge_id,FirstName,LastName,City,Phone,InmateID,jail_id,ReleaseDate")] Bridger bridger)
+        public ActionResult Edit(Bridgers bridger)
         {
             if (ModelState.IsValid)
             {
@@ -97,28 +96,15 @@ namespace Dist23Bridge.Controllers
         // GET: Bridgers/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Bridger bridger = db.Bridgers.Find(id);
-            if (bridger == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bridger);
+            Bridgers bridger = db.Bridgers.Find(id);
+            db.Bridgers.Remove(bridger);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // POST: Bridgers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Bridger bridger = db.Bridgers.Find(id);
-            db.Bridgers.Remove(bridger);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

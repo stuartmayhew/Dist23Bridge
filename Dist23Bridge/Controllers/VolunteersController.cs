@@ -7,12 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dist23Bridge;
+using Dist23Bridge.Models;
 
 namespace Dist23Bridge.Controllers
 {
     public class VolunteersController : Controller
     {
-        private Dist23BridgeEntities db = new Dist23BridgeEntities();
+        private BridgeData db = new BridgeData();
 
         // GET: Volunteers
         public ActionResult Index()
@@ -27,7 +28,7 @@ namespace Dist23Bridge.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Volunteer volunteer = db.Volunteers.Find(id);
+            Volunteers volunteer = db.Volunteers.Find(id);
             if (volunteer == null)
             {
                 return HttpNotFound();
@@ -46,7 +47,7 @@ namespace Dist23Bridge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Volunteer volunteer)
+        public ActionResult Create(Volunteers volunteer)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +66,7 @@ namespace Dist23Bridge.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Volunteer volunteer = db.Volunteers.Find(id);
+            Volunteers volunteer = db.Volunteers.Find(id);
             if (volunteer == null)
             {
                 return HttpNotFound();
@@ -78,7 +79,7 @@ namespace Dist23Bridge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Volunteer volunteer)
+        public ActionResult Edit(Volunteers volunteer)
         {
             if (ModelState.IsValid)
             {
@@ -92,24 +93,7 @@ namespace Dist23Bridge.Controllers
         // GET: Volunteers/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Volunteer volunteer = db.Volunteers.Find(id);
-            if (volunteer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(volunteer);
-        }
-
-        // POST: Volunteers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Volunteer volunteer = db.Volunteers.Find(id);
+            Volunteers volunteer = db.Volunteers.Find(id);
             db.Volunteers.Remove(volunteer);
             db.SaveChanges();
             return RedirectToAction("Index");

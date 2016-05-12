@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Dist23Bridge.Models;
 
 namespace Dist23Bridge.Controllers
 {
@@ -11,7 +12,7 @@ namespace Dist23Bridge.Controllers
         // GET: Jails
         public ActionResult Index()
         {
-            using (Dist23BridgeEntities db = new Dist23BridgeEntities())
+            using (BridgeData db = new BridgeData())
             {
                 return View(db.Jails.Where(x => x.jail_id != 2).ToList());
             }

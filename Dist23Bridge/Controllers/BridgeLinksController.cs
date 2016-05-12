@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dist23Bridge;
+using Dist23Bridge.Models;
 
 namespace Dist23Bridge.Controllers
 {
     public class BridgeLinksController : Controller
     {
-        private Dist23BridgeEntities db = new Dist23BridgeEntities();
+        private BridgeData db = new BridgeData();
 
         // GET: BridgeLinks
         public ActionResult Index()
         {
-            var bridgeLinks = db.BridgeLinks.Include(b => b.Bridger).Include(b => b.Volunteer);
+            var bridgeLinks = db.BridgeLinks;
             return View(bridgeLinks.ToList());
         }
 
@@ -28,7 +29,7 @@ namespace Dist23Bridge.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BridgeLink bridgeLink = db.BridgeLinks.Find(id);
+            BridgeLinks bridgeLink = db.BridgeLinks.Find(id);
             if (bridgeLink == null)
             {
                 return HttpNotFound();
@@ -49,7 +50,7 @@ namespace Dist23Bridge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BridgeLink bridgeLink)
+        public ActionResult Create(BridgeLinks bridgeLink)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +71,7 @@ namespace Dist23Bridge.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BridgeLink bridgeLink = db.BridgeLinks.Find(id);
+            BridgeLinks bridgeLink = db.BridgeLinks.Find(id);
             if (bridgeLink == null)
             {
                 return HttpNotFound();
@@ -85,7 +86,7 @@ namespace Dist23Bridge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "link_id,vol_id,bridge_id,DateAssign,FirstLetterSent,FirstResponse,FirstVisit,FirstMeeting")] BridgeLink bridgeLink)
+        public ActionResult Edit(BridgeLinks bridgeLink)
         {
             if (ModelState.IsValid)
             {
@@ -101,24 +102,7 @@ namespace Dist23Bridge.Controllers
         // GET: BridgeLinks/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BridgeLink bridgeLink = db.BridgeLinks.Find(id);
-            if (bridgeLink == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bridgeLink);
-        }
-
-        // POST: BridgeLinks/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BridgeLink bridgeLink = db.BridgeLinks.Find(id);
+            BridgeLinks bridgeLink = db.BridgeLinks.Find(id);
             db.BridgeLinks.Remove(bridgeLink);
             db.SaveChanges();
             return RedirectToAction("Index");

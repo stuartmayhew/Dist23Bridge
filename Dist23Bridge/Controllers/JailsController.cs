@@ -7,12 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dist23Bridge;
+using Dist23Bridge.Models;
 
 namespace Dist23Bridge.Controllers
 {
     public class JailsController : Controller
     {
-        private Dist23BridgeEntities db = new Dist23BridgeEntities();
+        private BridgeData db = new BridgeData();
 
         // GET: Jails
         public ActionResult Index()
@@ -27,7 +28,7 @@ namespace Dist23Bridge.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Jail jail = db.Jails.Find(id);
+            Jails jail = db.Jails.Find(id);
             if (jail == null)
             {
                 return HttpNotFound();
@@ -46,7 +47,7 @@ namespace Dist23Bridge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "jail_id,JailName,JailAddress,JailContact,JailContPhone,JailContEmail")] Jail jail)
+        public ActionResult Create(Jails jail)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +66,7 @@ namespace Dist23Bridge.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Jail jail = db.Jails.Find(id);
+            Jails jail = db.Jails.Find(id);
             if (jail == null)
             {
                 return HttpNotFound();
@@ -78,7 +79,7 @@ namespace Dist23Bridge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "jail_id,JailName,JailAddress,JailContact,JailContPhone,JailContEmail")] Jail jail)
+        public ActionResult Edit(Jails jail)
         {
             if (ModelState.IsValid)
             {
@@ -92,30 +93,15 @@ namespace Dist23Bridge.Controllers
         // GET: Jails/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Jail jail = db.Jails.Find(id);
-            if (jail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(jail);
-        }
-
-        // POST: Jails/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Jail jail = db.Jails.Find(id);
+            Jails jail = db.Jails.Find(id);
             db.Jails.Remove(jail);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        // POST: Jails/Delete/5
+
+            protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

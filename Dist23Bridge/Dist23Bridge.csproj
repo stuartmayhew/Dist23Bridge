@@ -130,27 +130,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BridgeData.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BridgeData.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BridgeData.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BridgeData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BridgeData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BridgeData.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="BridgeLink.cs">
-      <DependentUpon>BridgeData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Bridger.cs">
-      <DependentUpon>BridgeData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\BridgeLinksController.cs" />
     <Compile Include="Controllers\BridgersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -161,25 +140,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MailHelper.cs" />
-    <Compile Include="Jail.cs">
-      <DependentUpon>BridgeData.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\BridgeData.cs" />
+    <Compile Include="Models\BridgeLinks.cs" />
+    <Compile Include="Models\Bridgers.cs" />
+    <Compile Include="Models\Jails.cs" />
+    <Compile Include="Models\Volunteers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Volunteer.cs">
-      <DependentUpon>BridgeData.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BridgeData.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BridgeData.edmx</DependentUpon>
-      <LastGenOutput>BridgeData.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="BridgeData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BridgeData.edmx</DependentUpon>
-      <LastGenOutput>BridgeData.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -188,13 +156,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="BridgeData.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BridgeData.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="BridgeData.edmx.diagram">
-      <DependentUpon>BridgeData.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -243,7 +204,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

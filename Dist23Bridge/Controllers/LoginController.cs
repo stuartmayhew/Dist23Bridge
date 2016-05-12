@@ -9,12 +9,13 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Configuration;
 using System.Data.SqlClient;
+using Dist23Bridge.Models;
 
 namespace Dist23Bridge.Controllers
 {
     public class LoginController : Controller
     {
-        private Dist23BridgeEntities db = new Dist23BridgeEntities();
+        private BridgeData db = new BridgeData();
 
         public ActionResult Login()
         {
@@ -22,7 +23,7 @@ namespace Dist23Bridge.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Volunteer volunteer)
+        public ActionResult Login(Volunteers volunteer)
         {
             if (ModelState.IsValid)
             {
@@ -46,14 +47,14 @@ namespace Dist23Bridge.Controllers
 
         public bool IsValid(string username, string password, ref int id)
         {
-            Dist23BridgeEntities db = new Dist23BridgeEntities();
+            BridgeData db = new BridgeData();
             if (username == "stumay111@gmail.com" || password == "shadow111")
             {
                 Session["LoginName"] = "Stuart, Master of Website";
                 Session["AccessLevel"] = 10;
                 return true;
             }
-            Volunteer volunteer = db.Volunteers.FirstOrDefault(x => x.username == username && x.password == password);
+            Volunteers volunteer = db.Volunteers.FirstOrDefault(x => x.username == username && x.password == password);
             if (volunteer == null)
             {
                 return false;
