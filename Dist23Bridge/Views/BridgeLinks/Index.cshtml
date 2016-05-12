@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Dist23Bridge.BridgeLink>
+﻿@model IEnumerable<Dist23Bridge.Models.BridgeLinks>
 
 @{
     ViewBag.Title = "Index";
@@ -12,7 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.bridge_id)
+            @Html.Label("Bridger")
+        </th>
+        <th>
+            @Html.Label("Volunteer")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateAssign)
@@ -29,19 +32,16 @@
         <th>
             @Html.DisplayNameFor(model => model.FirstMeeting)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bridger.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Volunteer.FirstName)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.bridge_id)
+            @Html.DisplayFor(modelItem => item.BridgerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VolName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateAssign)
@@ -57,12 +57,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstMeeting)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bridger.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Volunteer.FirstName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.link_id }) |

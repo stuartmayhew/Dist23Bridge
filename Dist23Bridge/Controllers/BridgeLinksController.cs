@@ -18,8 +18,17 @@ namespace Dist23Bridge.Controllers
         // GET: BridgeLinks
         public ActionResult Index()
         {
-            var bridgeLinks = db.BridgeLinks;
-            return View(bridgeLinks.ToList());
+            List<BridgeLinks> bridgeLinks = db.BridgeLinks.ToList();
+            foreach (BridgeLinks link in bridgeLinks)
+            {
+                string fName = db.Bridgers.FirstOrDefault(x => x.bridge_id == link.bridge_id).FirstName;
+                string lName = db.Bridgers.FirstOrDefault(x => x.bridge_id == link.bridge_id).LastName;
+                link.BridgerName = fName + " " + lName;
+                fName = db.Volunteers.FirstOrDefault(x => x.vol_id == link.vol_id).FirstName;
+                lName = db.Volunteers.FirstOrDefault(x => x.vol_id == link.vol_id).LastName;
+                link.VolName = fName + " " + lName;
+            }
+            return View(bridgeLinks);
         }
 
         // GET: BridgeLinks/Details/5
@@ -40,8 +49,19 @@ namespace Dist23Bridge.Controllers
         // GET: BridgeLinks/Create
         public ActionResult Create()
         {
-            ViewBag.bridge_id = new SelectList(db.Bridgers, "bridge_id", "FirstName");
-            ViewBag.vol_id = new SelectList(db.Volunteers, "vol_id", "FirstName");
+            var bridgerList = db.Bridgers.ToList().Select(x => new
+            {
+                bridge_id = x.bridge_id,
+                bridgeName = x.FirstName + " " + x.LastName
+            });
+            ViewBag.bridge_id = new SelectList(bridgerList, "bridge_id", "bridgeName");
+
+            var volList = db.Volunteers.ToList().Select(x => new
+            {
+                vol_id = x.vol_id,
+                volName = x.FirstName + " " + x.LastName
+            });
+            ViewBag.vol_id = new SelectList(volList, "vol_id", "volName");
             return View();
         }
 
@@ -59,8 +79,19 @@ namespace Dist23Bridge.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.vol_id = new SelectList(db.Bridgers, "bridge_id", "FirstName", bridgeLink.vol_id);
-            ViewBag.vol_id = new SelectList(db.Volunteers, "vol_id", "FirstName", bridgeLink.vol_id);
+            var bridgerList = db.Bridgers.ToList().Select(x => new
+            {
+                bridge_id = x.bridge_id,
+                bridgeName = x.FirstName + " " + x.LastName
+            });
+            ViewBag.bridge_id = new SelectList(bridgerList, "bridge_id", "bridgeName");
+
+            var volList = db.Volunteers.ToList().Select(x => new
+            {
+                vol_id = x.vol_id,
+                volName = x.FirstName + " " + x.LastName
+            });
+            ViewBag.vol_id = new SelectList(volList, "vol_id", "volName");
             return View(bridgeLink);
         }
 
@@ -76,8 +107,36 @@ namespace Dist23Bridge.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.vol_id = new SelectList(db.Bridgers, "bridge_id", "FirstName", bridgeLink.vol_id);
-            ViewBag.vol_id = new SelectList(db.Volunteers, "vol_id", "FirstName", bridgeLink.vol_id);
+            var bridgerList = db.Bridgers.ToList().Select(x => new
+            {
+                bridge_id = x.bridge_id,
+                bridgeName = x.FirstName + " " + x.LastName
+            });
+            ViewBag.bridge_id = new SelectList(bridgerList, "bridge_id", "bridgeName");
+            foreach(var item in ViewBag.bridge_id)
+            {
+                if (item.Value == bridgeLink.bridge_id.ToString())
+                {
+                    item.Selected = true;
+                    break;
+                }
+            }
+
+
+            var volList = db.Volunteers.ToList().Select(x => new
+            {
+                vol_id = x.vol_id,
+                volName = x.FirstName + " " + x.LastName
+            });
+            ViewBag.vol_id = new SelectList(volList, "vol_id", "volName");
+            foreach (var item in ViewBag.vol_id)
+            {
+                if (item.Value == bridgeLink.vol_id.ToString())
+                {
+                    item.Selected = true;
+                    break;
+                }
+            }
             return View(bridgeLink);
         }
 
@@ -94,8 +153,19 @@ namespace Dist23Bridge.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.vol_id = new SelectList(db.Bridgers, "bridge_id", "FirstName", bridgeLink.vol_id);
-            ViewBag.vol_id = new SelectList(db.Volunteers, "vol_id", "FirstName", bridgeLink.vol_id);
+            var bridgerList = db.Bridgers.ToList().Select(x => new
+            {
+                bridge_id = x.bridge_id,
+                bridgeName = x.FirstName + " " + x.LastName
+            });
+            ViewBag.bridge_id = new SelectList(bridgerList, "bridge_id", "bridgeName");
+
+            var volList = db.Volunteers.ToList().Select(x => new
+            {
+                vol_id = x.vol_id,
+                volName = x.FirstName + " " + x.LastName
+            });
+            ViewBag.vol_id = new SelectList(volList, "vol_id", "volName");
             return View(bridgeLink);
         }
 

@@ -17,11 +17,11 @@ namespace Dist23Bridge.Models
             Database.SetInitializer<BridgeData>(null);
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            base.OnModelCreating(modelBuilder);
-        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        //    base.OnModelCreating(modelBuilder);
+        //}
         public DbSet<BridgeLinks> BridgeLinks { get; set; }
         public DbSet<Bridgers> Bridgers { get; set; }
         public DbSet<Jails> Jails { get; set; }

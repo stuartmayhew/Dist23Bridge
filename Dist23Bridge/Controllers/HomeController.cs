@@ -14,7 +14,8 @@ namespace Dist23Bridge.Controllers
         {
             using (BridgeData db = new BridgeData())
             {
-                return View(db.Jails.Where(x => x.jail_id != 2).ToList());
+                //return View(db.Jails.Where(x => x.jail_id != 2).ToList());
+                return View(db.Jails.ToList());
             }
         }
     }

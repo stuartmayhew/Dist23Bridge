@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Dist23Bridge.Bridger>
+﻿@model IEnumerable<Dist23Bridge.Models.Bridgers>
 
 @{
     ViewBag.Title = "Index";
@@ -30,7 +30,7 @@
             @Html.DisplayNameFor(model => model.ReleaseDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Jail.JailName)
+            @Html.DisplayNameFor(model => model.JailName)
         </th>
         <th></th>
     </tr>
@@ -56,7 +56,7 @@
             @Html.DisplayFor(modelItem => item.ReleaseDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Jail.JailName)
+            @Html.DisplayFor(modelItem => item.JailName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.bridge_id }) |

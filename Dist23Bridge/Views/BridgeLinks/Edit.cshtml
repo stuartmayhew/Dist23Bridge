@@ -1,4 +1,4 @@
-﻿@model Dist23Bridge.BridgeLink
+﻿@model Dist23Bridge.Models.BridgeLinks
 
 @{
     ViewBag.Title = "Edit";
@@ -24,10 +24,11 @@
             </div>
         </div>
 
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.bridge_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.bridge_id, "bridge_id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.bridge_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("bridge_id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.bridge_id, "", new { @class = "text-danger" })
             </div>
         </div>

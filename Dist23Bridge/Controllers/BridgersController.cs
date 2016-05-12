@@ -17,7 +17,12 @@ namespace Dist23Bridge.Controllers
         // GET: Bridgers
         public ActionResult Index()
         {
-            return View(db.Bridgers.ToList());
+            List<Bridgers> bridgers = db.Bridgers.ToList();
+            foreach (Bridgers bridge in bridgers)
+            {
+                bridge.JailName = db.Jails.FirstOrDefault(x => x.jail_id == bridge.jail_id).JailName;
+            }
+            return View(bridgers);
         }
 
         // GET: Bridgers/Details/5
