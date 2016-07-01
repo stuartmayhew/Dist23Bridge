@@ -112,31 +112,15 @@ namespace Dist23Bridge.Controllers
                 bridge_id = x.bridge_id,
                 bridgeName = x.FirstName + " " + x.LastName
             });
-            ViewBag.bridge_id = new SelectList(bridgerList, "bridge_id", "bridgeName");
-            foreach(var item in ViewBag.bridge_id)
-            {
-                if (item.Value == bridgeLink.bridge_id.ToString())
-                {
-                    item.Selected = true;
-                    break;
-                }
-            }
-
+            ViewBag.bridge_id = new SelectList(bridgerList, "bridge_id", "bridgeName",bridgeLink.bridge_id.ToString());
 
             var volList = db.Volunteers.ToList().Select(x => new
             {
                 vol_id = x.vol_id,
                 volName = x.FirstName + " " + x.LastName
             });
-            ViewBag.vol_id = new SelectList(volList, "vol_id", "volName");
-            foreach (var item in ViewBag.vol_id)
-            {
-                if (item.Value == bridgeLink.vol_id.ToString())
-                {
-                    item.Selected = true;
-                    break;
-                }
-            }
+
+            ViewBag.vol_id = new SelectList(volList, "vol_id", "volName",bridgeLink.vol_id.ToString());
             return View(bridgeLink);
         }
 

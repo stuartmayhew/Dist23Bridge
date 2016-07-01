@@ -18,7 +18,11 @@ namespace Dist23Bridge.Controllers
         // GET: Volunteers
         public ActionResult Index()
         {
-            return View(db.Volunteers.ToList());
+            if(Session["LoginName"] != null)
+            {
+                return View(db.Volunteers.ToList());
+            }
+            return null;
         }
 
         // GET: Volunteers/Details/5
